@@ -1,19 +1,14 @@
 // ============================================================
-// JCOP v4.0 - NextAuth.js Configuration
+// JCOP v4.0 - NextAuth.js Configuration (Node.js runtime only)
 // ============================================================
 import NextAuth from 'next-auth';
-import Google from 'next-auth/providers/google';
+import { authConfig } from './auth.config';
 import { getMemberByEmail } from './sheets';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  providers: [
-    Google({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    }),
-  ],
-  pages: {
-    signIn: '/login',
+  ...authConfig,
+  session: {
+    strategy: 'jwt',
   },
   callbacks: {
     async signIn({ user }) {
@@ -42,8 +37,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
       return token;
     },
-  },
-  session: {
-    strategy: 'jwt',
   },
 });

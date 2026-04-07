@@ -1,8 +1,11 @@
 // ============================================================
-// JCOP v4.0 - Auth Middleware
+// JCOP v4.0 - Auth Middleware (Edge-compatible)
 // ============================================================
-import { auth } from '@/lib/auth';
+import NextAuth from 'next-auth';
+import { authConfig } from '@/lib/auth.config';
 import { NextResponse } from 'next/server';
+
+const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
   const { nextUrl, auth: session } = req;
