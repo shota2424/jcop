@@ -6,8 +6,8 @@ import { google } from 'googleapis';
 function getAuth() {
   return new google.auth.GoogleAuth({
     credentials: {
-      client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-      private_key: process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+      client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL?.trim(),
+      private_key: process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY?.trim().replace(/\\n/g, '\n'),
     },
     scopes: ['https://www.googleapis.com/auth/drive'],
   });
@@ -17,7 +17,7 @@ function getDrive() {
   return google.drive({ version: 'v3', auth: getAuth() });
 }
 
-const ROOT_FOLDER_ID = process.env.GOOGLE_DRIVE_ROOT_FOLDER_ID || '';
+const ROOT_FOLDER_ID = (process.env.GOOGLE_DRIVE_ROOT_FOLDER_ID || '').trim();
 
 // ---------- Create folder ----------
 export async function createFolder(name: string, parentId?: string): Promise<string> {
