@@ -8,8 +8,8 @@ import type { Member, MemberPosition, JCEvent, Attendance, Bill, AttendanceStatu
 function getAuth() {
   return new google.auth.GoogleAuth({
     credentials: {
-      client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-      private_key: process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+      client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL?.trim(),
+      private_key: process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY?.trim().replace(/\\n/g, '\n'),
     },
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
   });
@@ -19,7 +19,7 @@ function getSheets(): sheets_v4.Sheets {
   return google.sheets({ version: 'v4', auth: getAuth() });
 }
 
-const SPREADSHEET_ID = process.env.GOOGLE_SPREADSHEET_ID!;
+const SPREADSHEET_ID = (process.env.GOOGLE_SPREADSHEET_ID ?? '').trim();
 
 // ---------- Generic Helpers ----------
 async function getSheetData(sheetName: string): Promise<string[][]> {
