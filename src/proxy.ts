@@ -1,15 +1,13 @@
 // ============================================================
-// JCOP v4.0 - Auth Middleware (Edge-compatible)
+// JCOP v4.0 - Auth Proxy (Next.js 16, Node.js runtime)
 // ============================================================
-import NextAuth from 'next-auth';
-import { authConfig } from '@/lib/auth.config';
+import { auth } from '@/lib/auth';
 import { NextResponse } from 'next/server';
+import type { NextAuthRequest } from 'next-auth';
 
-const { auth } = NextAuth(authConfig);
-
-export default auth((req) => {
-  const { nextUrl, auth: session } = req;
-  const isLoggedIn = !!session?.user;
+export const proxy = auth((req: NextAuthRequest) => {
+  const { nextUrl } = req;
+  const isLoggedIn = !!req.auth?.user;
   const isLoginPage = nextUrl.pathname === '/login';
   const isApiRoute = nextUrl.pathname.startsWith('/api');
   const isLiffRoute = nextUrl.pathname.startsWith('/liff');
