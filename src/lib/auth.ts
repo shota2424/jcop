@@ -12,27 +12,39 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   callbacks: {
     async signIn({ user }) {
-      // Check if user's email is in the members allowlist
       if (!user.email) return false;
-      const member = await getMemberByEmail(user.email);
-      return !!member;
+      try {
+        const member = await getMemberByEmail(user.email);
+        return !!member;
+      } catch (e) {
+        console.error('[signIn] Sheets error:', e);
+        return false;
+      }
     },
     async session({ session }) {
       if (session.user?.email) {
-        const member = await getMemberByEmail(session.user.email);
-        if (member) {
-          (session.user as unknown as Record<string, unknown>).role = member.role;
-          session.user.name = member.name;
+        try {
+          const member = await getMemberByEmail(session.user.email);
+          if (member) {
+            (session.user as unknown as Record<string, unknown>).role = member.role;
+            session.user.name = member.name;
+          }
+        } catch (e) {
+          console.error('[session] Sheets error:', e);
         }
       }
       return session;
     },
     async jwt({ token }) {
       if (token.email) {
-        const member = await getMemberByEmail(token.email);
-        if (member) {
-          token.role = member.role;
-          token.memberName = member.name;
+        try {
+          const member = await getMemberByEmail(token.email);
+          if (member) {
+            token.role = member.role;
+            token.memberName = member.name;
+          }
+        } catch (e) {
+          console.error('[jwt] Sheets error:', e);
         }
       }
       return token;
