@@ -1,0 +1,23 @@
+.page { max-width: 1200px; margin: 0 auto; }
+.pageHeader { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: var(--space-6); }
+.pageTitle { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: var(--space-1); }
+.pageSubtitle { font-size: 0.875rem; color: var(--text-tertiary); }
+
+.statsRow { display: flex; gap: var(--space-3); margin-bottom: var(--space-4); flex-wrap: wrap; }
+.committeeStat { padding: var(--space-3) var(--space-4); display: flex; align-items: center; gap: var(--space-2); }
+.committeeLabel { font-size: 0.8125rem; font-weight: 500; }
+.committeeCount { font-size: 0.75rem; color: var(--text-tertiary); }
+
+.toolbar { margin-bottom: var(--space-4); }
+.searchBox { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); background: var(--bg-elevated); border: 1px solid var(--border-default); border-radius: var(--radius-lg); max-width: 400px; color: var(--text-tertiary); }
+.searchInput { background: none; border: none; color: var(--text-primary); outline: none; font-size: 0.875rem; flex: 1; }
+.searchInput::placeholder { color: var(--text-tertiary); }
+
+.tableCard { overflow: hidden; }
+.nameCell { display: flex; align-items: center; gap: var(--space-2); }
+.memberName { font-weight: 500; }
+.emailText { font-size: 0.8125rem; color: var(--text-secondary); }
+.lineText { font-size: 0.8125rem; color: var(--text-secondary); }
+
+.emptyState { padding: var(--space-10); text-align: center; color: var(--text-tertiary); font-size: 0.875rem; }
+.formGroup { margin-bottom: var(--space-4); }

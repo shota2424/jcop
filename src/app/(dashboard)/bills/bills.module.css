@@ -1,0 +1,20 @@
+.page { max-width: 1200px; margin: 0 auto; }
+.pageHeader { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: var(--space-6); }
+.pageTitle { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: var(--space-1); }
+.pageSubtitle { font-size: 0.875rem; color: var(--text-tertiary); }
+
+.columnTitle { display: flex; align-items: center; gap: var(--space-2); }
+.columnCount { font-size: 0.75rem; color: var(--text-tertiary); font-weight: 600;
+  width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
+  background: var(--bg-elevated); border-radius: var(--radius-full);
+}
+.columnEmpty { padding: var(--space-8) var(--space-4); text-align: center; border: 2px dashed var(--border-subtle); border-radius: var(--radius-lg); color: var(--text-tertiary); font-size: 0.8125rem; }
+
+.cardTitle { font-size: 0.875rem; font-weight: 600; margin-bottom: var(--space-2); }
+.cardDeadline { display: flex; align-items: center; gap: var(--space-1); font-size: 0.75rem; color: var(--text-tertiary); margin-bottom: var(--space-2); }
+.cardAssignee { display: flex; align-items: center; gap: var(--space-2); font-size: 0.6875rem; color: var(--text-tertiary); margin-bottom: var(--space-2); overflow: hidden; text-overflow: ellipsis; }
+.cardActions { display: flex; gap: var(--space-1); flex-wrap: wrap; margin-top: var(--space-2); border-top: 1px solid var(--border-subtle); padding-top: var(--space-2); }
+.cardBtn { font-size: 0.6875rem !important; padding: 2px 6px !important; }
+
+.createNote { font-size: 0.8125rem; color: var(--color-primary-light); background: rgba(59,130,246,0.08); padding: var(--space-3); border-radius: var(--radius-md); margin-bottom: var(--space-4); }
+.formGroup { margin-bottom: var(--space-4); }
