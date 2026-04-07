@@ -7,6 +7,7 @@ import { getMemberByEmail } from './sheets';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   ...authConfig,
+  secret: process.env.AUTH_SECRET?.trim(),
   session: {
     strategy: 'jwt',
   },
