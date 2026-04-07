@@ -20,6 +20,9 @@ export default auth((req) => {
   // Allow auth API routes
   if (nextUrl.pathname.startsWith('/api/auth')) return NextResponse.next();
 
+  // Allow debug route without auth (temporary)
+  if (nextUrl.pathname === '/api/debug') return NextResponse.next();
+
   // Redirect unauthenticated users to login
   if (!isLoggedIn && !isLoginPage) {
     return NextResponse.redirect(new URL('/login', nextUrl));
