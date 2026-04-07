@@ -4,7 +4,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import type { ParsedEvent } from './types';
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+const genAI = new GoogleGenerativeAI((process.env.GEMINI_API_KEY || '').trim());
 
 // ---------- Parse text from LINE message ----------
 export async function parseTextToEvent(text: string): Promise<ParsedEvent[]> {
